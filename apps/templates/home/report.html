@@ -1,0 +1,53 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Forms {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- ### $App Screen Content ### -->
+    <main class='main-content bgc-grey-100'>
+      <div id='mainContent'>
+        <div class="row gap-20 masonry pos-r">
+          <div class="masonry-sizer col-md-6"></div>
+          <div class="masonry-item col-md-12">
+            <div class="bgc-white p-20 bd">
+              <h6 class="c-grey-900">Basic Search  With Import Date</h6>
+              <div class="mT-5">
+                <form action="report_extract"  method = "POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="row">
+                  <div class="mb-3 col-md-3">
+                    <label class="form-label" for="">Import Date From</label>
+                    <input type="text" name="start_date" class="form-control bdc-grey-200 start-date" placeholder="Date picker" data-provide="datepicker" autocomplete="off">
+                  </div>
+                  <div class="mb-3 col-md-3">
+                    <label class="form-label" for="">To</label>
+                    <input type="text" name="end_date" class="form-control bdc-grey-200 end-date" placeholder="Date picker" data-provide="datepicker" autocomplete="off">
+                  </div>
+                    <div class="mb-3 col-md-3">
+                    <label class="form-label" for=""></label><br>
+                     <button type="submit" class="btn btn-primary btn-color">export</button>
+                  </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </main>
+<script>
+
+</script>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+
+
+
+{% block javascripts %}{% endblock javascripts %}

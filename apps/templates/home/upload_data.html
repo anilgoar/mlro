@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Forms {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- ### $App Screen Content ### -->
+    <main class='main-content bgc-grey-100'>
+      <div id='mainContent'>
+        <div class="row gap-20 masonry pos-r">
+          <div class="masonry-sizer col-md-12"></div>
+          <div class="masonry-item col-md-12">
+            <div class="bgc-white p-20 bd">
+              <h6 class="c-grey-900">Data Upload Form </h6>
+              {% if messages %}
+        {% for message in messages %}
+            <div>
+<!--                | means OR operator-->
+                <strong>{{message|safe}}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+              <div class="mT-30">
+                <form action="upload_data" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="col-md-4">
+                    <label class="form-label" for="">Import Data </label>
+                    <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+                    <span style="color:red">Only CSV file Allow</span>
+                  </div>
+                  <div class="mb-3">
+
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-color">Upload</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

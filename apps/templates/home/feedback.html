@@ -1,0 +1,329 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Forms {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- ### $App Screen Content ### -->
+    <main class='main-content bgc-grey-100'>
+      <div id='mainContent'>
+        <div class="row gap-20 masonry pos-r">
+          <div class="masonry-sizer col-md-6"></div>
+          <div class="masonry-item col-md-12">
+            <div class="bgc-white p-20 bd">
+              <h6 class="c-grey-900">Basic Details</h6>
+              <div class="mT-5">
+                  <div class="row">
+                  <div class="mb-3 col-md-2">
+                    <label class="form-label" for="exampleInputEmail1">Profile Id</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ viewdata.profile_id}}" disabled>
+                  </div>
+                  <div class="mb-3 col-md-3">
+                    <label class="form-label" for="exampleInputPassword1">Name  </label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" value="{{ viewdata.name}}" disabled>
+                  </div>
+
+                   <div class="mb-3 col-md-2">
+                    <label class="form-label" for="exampleInputPassword2">DOB</label>
+                    <input type="text" class="form-control" id="exampleInputPassword2" value="{{ viewdata.dob}}" disabled>
+
+                  </div>
+                    <div class="mb-3 col-md-5">
+                    <label class="form-label" for="exampleInputPassword3">Remarks</label>
+                    <input type="text" class="form-control" id="exampleInputPassword3" value="{{ viewdata.remarks}}" disabled>
+                  </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="masonry-item col-md-12">
+            <div class="bgc-white p-20 bd">
+              <h6 class="c-grey-900">Capture Details</h6>
+      {% if messages %}
+        {% for message in messages %}
+            <div>
+<!--                | means OR operator-->
+                <strong style="color:red">{{message|safe}}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+              <div class="mT-5">
+                <form action="feedback_update" method = "POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                <!--  First Profile pannel  ----->
+                  <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture1">Image</label>
+                      <input type="file" name="picture1" id="picture1" class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture_sc1">Web Link</label>
+                      <input type="text" name="picture_sc1" id="picture_sc1"  class="form-control">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="picture2">Screen Short</label>
+                      <input type="file" name="picture2" id="picture2"  class="form-control" accept="application/pdf">
+                    </div>
+
+                  </div>
+                  <div class="row">
+
+                    <div class="mb-3 col-md-12">
+                      <label class="form-label" for="aremarks">Remarks</label>
+                      <input type="text" name="aremarks" id="aremarks"  class="form-control" required>
+                    </div>
+
+                  </div>
+
+                  <!-- Toggle Search ----->
+
+                    <div class="row">
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Name</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Name">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">DOB</label>
+                          <label class="switch">
+                          <input type="checkbox"  name="matchcase[]" value="DOB">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">YOB</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="YOB">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">POB</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="POB">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Id No</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Id No">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Nickname</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Nickname">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Tittle</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Tittle">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Nationality</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Nationality">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Description</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Description">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+
+                  </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label">Source Rating &nbsp;</label>
+                            <input type="radio" name="rating" id="rating" value="Best">Best
+                            <input type="radio" name="rating" id="rating" value="Good">Good
+                            <input type="radio" name="rating" id="rating" value="Okay">Okay
+                            <input type="radio" name="rating" id="rating" value="Caution">Caution
+                        </div>
+                    </div>
+
+                  <!--  Second Profile pannel  ----->
+                  <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="altpicture1">Alternate Image 1</label>
+                      <input type="file" name="altpicture1" id="altpicture1" class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="altpicture_sc1">Alternate Web Link 1</label>
+                      <input type="text" name="altpicture_sc1" id="altpicture_sc1"  class="form-control">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="altscreen1">Alternate Screen Short 1</label>
+                      <input type="file" name="altscreen1" id="altscreen1"  class="form-control" accept="application/pdf">
+                    </div>
+
+                  </div>
+                  <div class="row">
+
+                    <div class="mb-3 col-md-12">
+                      <label class="form-label" for="altaremarks1">Alternate Remarks 1</label>
+                      <input type="text" name="altaremarks1" id="altaremarks1"  class="form-control">
+                    </div>
+
+                  </div>
+
+                  <!--  Third Profile pannel  ----->
+                  <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="altpicture2">Alternate Image 2</label>
+                      <input type="file" name="altpicture2" id="altpicture2" class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="altpicture_sc2">Alternate Web Link 2</label>
+                      <input type="text" name="altpicture_sc2" id="altpicture_sc2"  class="form-control">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" for="altscreen2">Alternate Screen Short 2</label>
+                      <input type="file" name="altscreen2" id="altscreen2"  class="form-control" accept="application/pdf">
+                    </div>
+
+                  </div>
+                  <div class="row">
+
+                    <div class="mb-3 col-md-12">
+                      <label class="form-label" for="altaremarks2">Alternate Remarks 2</label>
+                      <input type="text" name="altaremarks2" id="altaremarks2"  class="form-control">
+                    </div>
+
+                  </div>
+
+
+
+                  <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture1">Relation 1</label>
+                      <Select name="Relation1" class="form-control" onchange="myFunction()">
+                        <option value="">-Select-</option>
+                          <option value="Father">Father</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Wife">Wife</option>
+                          <option value="Son">Son</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Other">Other</option>
+                      </Select>
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_pic1">Relative Image</label>
+                      <input type="file" name="rel_pic1" id="rel_pic1"  class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_web1">Web Link</label>
+                      <input type="text" name="rel_web1" id="rel_web1"  class="form-control">
+                    </div>
+                      <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_profile1">Profile Id (Auto generated)</label>
+                      <input type="text" name="rel_profile1" id="rel_profile1"  class="form-control" readonly>
+                    </div>
+                  </div>
+                    <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture3">Screen Short</label>
+                      <input type="file" name="picture3" id="picture3"  class="form-control" accept="application/pdf">
+                    </div>
+                   <div class="mb-3 col-md-9">
+                      <label class="form-label" for="aremarks1">Relation1 Remarks</label>
+                      <input type="text" name="aremarks1" id="aremarks1"  class="form-control">
+                    </div>
+
+                  </div>
+                   <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" >Relation 2</label>
+                      <Select name="Relation2" class="form-control" onchange="myFunction1()">
+                        <option value="">-Select-</option>
+                          <option value="Father">Father</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Wife">Wife</option>
+                          <option value="Son">Son</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Other">Other</option>
+                      </Select>
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_pic2">Relative Image</label>
+                      <input type="file" name="rel_pic2" id="rel_pic2"  class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_web2">Web Link</label>
+                      <input type="text" name="rel_web2" id="rel_web2"  class="form-control">
+                    </div>
+                      <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_profile2">Profile Id (Auto generated)</label>
+                      <input type="text" name="rel_profile2" id="rel_profile2"  class="form-control" readonly >
+                    </div>
+                  </div>
+                 <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture4">Screen Short</label>
+                      <input type="file" name="picture4" id="picture4"  class="form-control" accept="application/pdf">
+                    </div>
+                   <div class="mb-3 col-md-9">
+                      <label class="form-label" for="aremarks2">Relation2 Remarks</label>
+                      <input type="text" name="aremarks2" id="aremarks2"  class="form-control">
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                   <div class="mb-3 col-md-2">
+                    <input type="hidden" name="id" value="{{ viewdata.id }}">
+                    <input type="hidden" class="form-control" id="pfid" name="pfid" value="{{ viewdata.profile_id}}">
+                    <input type="hidden" class="form-control" id="starttime" name="starttime" value="{{ viewdata.start_date|date:"Y-m-d H:i:s" }}">
+                    <label class="switch" for="altaremarks2" style="width: 67px">Task Hold</label>
+                          <label class="switch">
+                          <input type="checkbox" name="hold_case" value="Hold">
+                          <span class="slider round"></span>
+                        </label>
+                   </div>
+                   <div class="mb-3 col-md-4">
+                    <input type="submit" name="Save" class="btn btn-primary btn-color" value="Save">
+                    &nbsp;&nbsp;
+                    <input type="submit" name="Save" class="btn btn-primary btn-color" value="Save and Exit">
+                   </div>
+                 </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+<script>
+function myFunction() {
+  var x = document.getElementById("exampleInputEmail1").value;
+  document.getElementById("rel_profile1").value = x +"-1";
+}
+function myFunction1() {
+  var x = document.getElementById("exampleInputEmail1").value;
+  document.getElementById("rel_profile2").value = x +"-2";
+}
+</script>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+
+
+
+{% block javascripts %}{% endblock javascripts %}

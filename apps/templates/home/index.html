@@ -1,0 +1,216 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- ### $App Screen Content ### -->
+    <main class='main-content bgc-grey-100'>
+      <div id='mainContent'>
+        <div class="row gap-20 masonry pos-r">
+          <div class="masonry-sizer col-md-6"></div>
+          <div class="masonry-item  w-100">
+            <div class="row gap-20">
+              <!-- #Toatl Visits ==================== -->
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">Profile IDs with Faces</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ totpic }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- #Total Page Views ==================== -->
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">Profile IDs without Faces</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash2"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">{{ totpicn }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- #Unique Visitors ==================== -->
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">Total Profile IDs filed</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash3"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">{{ totpof }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+		
+		<div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">Pending Task</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash11"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">{{ unfill }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- #Bounce Rate ==================== -->
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">% of Profile IDs with Faces</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash4"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">{% widthratio totpic totpof 100 %} %</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">Approved Profile IDs</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash5"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ totappr }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- #Total Page Views ==================== -->
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">% Approved</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash6"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">{% widthratio totappr totpic 100 %} %</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- #Unique Visitors ==================== -->
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">ATT for successful filing</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash7"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">{{ durat }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- #Bounce Rate ==================== -->
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">ATT for unsuccessful filing</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash8"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">{{ duratnot }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class='col-md-3'>
+                <div class="layers bd bgc-white p-20">
+                  <div class="layer w-100 mB-10">
+                    <h6 class="lh-1">ATT for approved filing</h6>
+                  </div>
+                  <div class="layer w-100">
+                    <div class="peers ai-sb fxw-nw">
+                      <div class="peer peer-greed">
+                        <span id="sparklinedash10"></span>
+                      </div>
+                      <div class="peer">
+                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ avgapprv }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

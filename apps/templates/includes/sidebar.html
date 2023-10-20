@@ -1,0 +1,136 @@
+
+      <div class="sidebar">
+        <div class="sidebar-inner">
+          <!-- ### $Sidebar Header ### -->
+          <div class="sidebar-logo">
+            <div class="peers ai-c fxw-nw">
+              <div class="peer peer-greed">
+                <a class="sidebar-link td-n" href="/index.html">
+                  <div class="peers ai-c fxw-nw">
+                    <div class="peer">
+                      <div class="logo">
+                        <img src="{{ ASSETS_ROOT }}/images/logo.png" alt="">
+                      </div>
+                    </div>
+                    <div class="peer peer-greed">
+                      <h5 class="lh-1 mB-0 logo-text">MLRO</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="peer">
+                <div class="mobile-toggle sidebar-toggle">
+                  <a href="" class="td-n">
+                    <i class="ti-arrow-circle-left"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ### $Sidebar Menu ### -->
+          <ul class="sidebar-menu scrollable pos-r">
+            <li class="nav-item mT-30 actived">
+              {% if user.is_staff is True %}
+              <a class="sidebar-link" href="/index">
+                <span class="icon-holder">
+                  <i class="fa fa-tachometer"></i>
+                </span>
+                <span class="title">Dashboard</span>
+              </a>
+              <a class="sidebar-link" href="/upload_data">
+                <span class="icon-holder">
+                  <i class="fa fa-upload"></i>
+                </span>
+                <span class="title">Upload Data</span>
+              </a>
+
+              <a class="sidebar-link" href="/feedback">
+                <span class="icon-holder">
+                  <i class="fa fa-tasks"></i>
+                </span>
+                <span class="title">Capture Information</span>
+              </a>
+              <a class="sidebar-link" href="/similar_search">
+                <span class="icon-holder">
+                  <i class="fa fa-tasks"></i>
+                </span>
+                <span class="title">Search Task</span>
+              </a>
+              <a class="sidebar-link" href="/details">
+                <span class="icon-holder">
+                  <i class="fa fa-list"></i>
+                </span>
+                <span class="title">Data Validation</span>
+              </a>
+              <a class="sidebar-link" href="/rej_details">
+                <span class="icon-holder">
+                  <i class="fa fa-tasks"></i>
+                </span>
+                <span class="title">Rejected Task</span>
+              </a>
+              <!--<a class="sidebar-link" href="/report">
+                <span class="icon-holder">
+                  <i class="fa fa-flag"></i>
+                </span>
+                <span class="title">Reports</span>
+              </a>-->
+              <a class="sidebar-link" href="/rawreport">
+                <span class="icon-holder">
+                  <i class="fa fa-flag"></i>
+                </span>
+                <span class="title">Raw Data</span>
+              </a>
+	      <a class="sidebar-link" href="/apr">
+                <span class="icon-holder">
+                  <i class="fa fa-flag"></i>
+                </span>
+                <span class="title">APR</span>
+              </a>	
+              {% endif %}
+              {% if user.username == 'harsh.garg@teammas.in' or user.username == 'akash@teammas.in' or user.username == 'vishal.sharma@teammas.in' %}
+
+
+              <a class="sidebar-link" href="/feedback">
+                <span class="icon-holder">
+                  <i class="fa fa-tasks"></i>
+                </span>
+                <span class="title">Capture Information</span>
+              </a>
+              <a class="sidebar-link" href="/rej_details">
+                <span class="icon-holder">
+                  <i class="fa fa-tasks"></i>
+                </span>
+                <span class="title">Rejected Task</span>
+              </a>
+              <a class="sidebar-link" href="/similar_search">
+                <span class="icon-holder">
+                  <i class="fa fa-tasks"></i>
+                </span>
+                <span class="title">Search Task</span>
+              </a>
+
+              {% endif %}
+              {% if user.username == 'charlotteplazos@gmail.com' or user.username == 'princessjeanllanera@gmail.com' %}
+
+
+              <a class="sidebar-link" href="/index">
+                <span class="icon-holder">
+                  <i class="fa fa-tachometer"></i>
+                </span>
+                <span class="title">Dashboard</span>
+              </a>
+               <a class="sidebar-link" href="/details">
+                <span class="icon-holder">
+                  <i class="fa fa-list"></i>
+                </span>
+                <span class="title">Data Validation</span>
+              </a>
+
+              {% endif %}
+            </li>
+
+          </ul>
+
+        </div>
+      </div>

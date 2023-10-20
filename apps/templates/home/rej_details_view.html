@@ -1,0 +1,373 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Forms {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- ### $App Screen Content ### -->
+    <main class='main-content bgc-grey-100'>
+      <div id='mainContent'>
+        <div class="row gap-20 masonry pos-r">
+          <div class="masonry-sizer col-md-6"></div>
+          <div class="masonry-item col-md-12">
+            <div class="bgc-white p-20 bd">
+              <h6 class="c-grey-900">Basic Details</h6>
+              <div class="mT-5">
+
+                  <div class="row">
+                  <div class="mb-3 col-md-2">
+                    <label class="form-label" for="exampleInputEmail1">Profile Id</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ objs.profile_id}}" disabled>
+                  </div>
+                  <div class="mb-3 col-md-3">
+                    <label class="form-label" for="exampleInputPassword1">Name</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" value="{{ objs.name}}" disabled>
+                  </div>
+
+                   <div class="mb-3 col-md-2">
+                    <label class="form-label" for="exampleInputPassword2">DOB</label>
+                    <input type="text" class="form-control" id="exampleInputPassword2" value="{{ objs.dob}}" disabled>
+
+                  </div>
+                    <div class="mb-3 col-md-5">
+                    <label class="form-label" for="exampleInputPassword3">Remarks</label>
+                    <input type="text" class="form-control" id="exampleInputPassword3" value="{{ objs.remarks}}" disabled>
+                  </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="masonry-item col-md-12">
+            <div class="bgc-white p-20 bd">
+              <h6 class="c-grey-900">Capture Details</h6>
+              {% if messages %}
+        {% for message in messages %}
+            <div>
+<!--                | means OR operator-->
+                <strong style="color:red">{{message|safe}}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+              <div class="mT-5">
+                <form action="/rej_details_view_update/"  method = "POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                {% if objs.action == "Reject" %}
+                  <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label">Image</label>
+                      <input type="file" name="picture1" id="picture1" class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture_sc1">Web Link </label>
+                      <input type="text" name="picture_sc1" id="picture_sc1"  class="form-control" value="{{ objs.picture_sc1}}">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" >Screen Short</label></br>
+                      <input type="file" name="picture2" id="picture2"  class="form-control">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" >Action</label>
+                      <Select name="action" class="form-control" readonly>
+                        <option value="{{ objs.action }}">{{ objs.action }}</option>
+
+
+                      </Select>
+                    </div>
+                   <div class="row">
+
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" >Remarks</label>
+                      <input type="text" name="aremarks" id="aremarks"  class="form-control" value="{{ objs.aremarks}}">
+                    </div>
+                       <div class="mb-3 col-md-6">
+                      <label class="form-label" >MLRO Remarks</label>
+                      <input type="text" name="mlro_remarks" id="mlro_remarks"  class="form-control" value="{{ objs.mlro_remarks}}" disabled>
+                    </div>
+                  </div>
+
+
+                 <div class="row">
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Name</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Name" {% if 'Name' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">DOB</label>
+                          <label class="switch">
+                          <input type="checkbox"  name="matchcase[]" value="DOB" {% if 'DOB' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">YOB</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="YOB" {% if 'YOB' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">POB</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="POB" {% if 'POB' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Id No</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Id No" {% if 'Id No' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Nickname</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Nickname" {% if 'Nickname' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Tittle</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Tittle" {% if 'Tittle' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Nationality</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Nationality" {% if 'Nationality' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="mb-3 col-md-1">
+                        <label class="switch" for="altaremarks2">Description</label>
+                          <label class="switch">
+                          <input type="checkbox" name="matchcase[]" value="Description" {% if 'Description' in objs.matchcase %} checked {% endif %}>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+
+                  </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label">Source Rating &nbsp;</label>
+                            <input type="radio" name="rating" id="rating" value="Best" {% if 'Best' in objs.rating %} checked {% endif %}>Best
+                            <input type="radio" name="rating" id="rating" value="Good" {% if 'Good' in objs.rating %} checked {% endif %}>Good
+                            <input type="radio" name="rating" id="rating" value="Okay" {% if 'Okay' in objs.rating %} checked {% endif %}>Okay
+                            <input type="radio" name="rating" id="rating" value="Caution" {% if 'Caution' in objs.rating %} checked {% endif %}>Caution
+                        </div>
+                    </div>
+
+
+                   <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label">Alternate Image 1</label>
+                      <input type="file" name="altpicture1" id="altpicture1" class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture_sc1">Alternate Web Link 1</label>
+                      <input type="text" name="altpicture_sc1" id="altpicture_sc1"  class="form-control" value="{{ objs.altpicture_sc1}}">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" >Alternate Screen Short 1</label></br>
+                      <input type="file" name="altscreen1" id="altscreen1"  class="form-control">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" >Action</label>
+                      <Select name="altaction1" class="form-control" readonly>
+                        <option value="{{ objs.altaction1 }}">{{ objs.altaction1 }}</option>
+
+
+                      </Select>
+                    </div>
+                   <div class="row">
+
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" >Alternate Remarks 1</label>
+                      <input type="text" name="altaremarks1" id="altaremarks1"  class="form-control" value="{{ objs.altaremarks1}}">
+                    </div>
+                       <div class="mb-3 col-md-6">
+                      <label class="form-label" >Alternate MLRO Remarks 1</label>
+                      <input type="text" name="altmlro_remarks1" id="altmlro_remarks1"  class="form-control" value="{{ objs.altmlro_remarks1}}" disabled>
+                    </div>
+                  </div>
+
+                   <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label">Alternate Image 2</label>
+                      <input type="file" name="altpicture2" id="altpicture2" class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" for="picture_sc1">Alternate Web Link 2</label>
+                      <input type="text" name="altpicture_sc2" id="altpicture_sc2"  class="form-control" value="{{ objs.altpicture_sc2}}">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" >Alternate Screen Short 2</label></br>
+                      <input type="file" name="altscreen2" id="altscreen2"  class="form-control">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" >Action</label>
+                      <Select name="altaction2" class="form-control" readonly>
+                        <option value="{{ objs.altaction2 }}">{{ objs.altaction2 }}</option>
+
+
+                      </Select>
+                    </div>
+                   <div class="row">
+
+                    <div class="mb-3 col-md-6">
+                      <label class="form-label" >Alternate Remarks 2</label>
+                      <input type="text" name="altaremarks2" id="altaremarks2"  class="form-control" value="{{ objs.altaremarks2}}">
+                    </div>
+                       <div class="mb-3 col-md-6">
+                      <label class="form-label" >Alternate MLRO Remarks 2</label>
+                      <input type="text" name="altmlro_remarks2" id="altmlro_remarks2"  class="form-control" value="{{ objs.altmlro_remarks2}}" disabled>
+                    </div>
+                  </div>
+
+
+                {% endif %}
+
+                {% if objs.action1 == "Reject" %}
+                  <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" >Relation 1</label>
+                      <Select name="Relation1" class="form-control" onchange="myFunction()">
+                        <option value="{{ objs.Relation1}}">{{ objs.Relation1}}</option>
+                          <option value="Father">Father</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Wife">Wife</option>
+                          <option value="Son">Son</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Other">Other</option>
+                      </Select>
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" >Relative Image</label>
+                       <input type="file" name="rel_pic1" id="rel_pic1"  class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_web1">Web Link</label>
+                      <input type="text" name="rel_web1" id="rel_web1"  class="form-control" value="{{ objs.rel_web1}}">
+                    </div>
+                      <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_profile1">Profile Id</label>
+                      <input type="text" name="rel_profile1" id="rel_profile1"  class="form-control" readonly value="{{ objs.rel_profile1}}">
+                    </div>
+                      <div class="mb-3 col-md-3">
+                      <label class="form-label" >Screen Short</label></br>
+                      <input type="file" name="picture3" id="picture3"  class="form-control">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" >Action</label>
+                      <Select name="action1" class="form-control" disabled>
+                        <option value="{{ objs.action1 }}">{{ objs.action1 }}</option>
+
+
+                      </Select>
+                    </div>
+                       <div class="mb-3 col-md-3">
+                      <label class="form-label" >Remarks</label>
+                      <input type="text" name="aremarks1" id="aremarks1"  class="form-control" value="{{ objs.aremarks1}}">
+                    </div>
+                       <div class="mb-3 col-md-3">
+                      <label class="form-label" >MLRO Remarks</label>
+                      <input type="text" name="mlro_remarks1" id="mlro_remarks1"  class="form-control" value="{{ objs.mlro_remarks1}}" disabled>
+                    </div>
+
+                  </div>
+                {% endif %}
+
+
+                {% if objs.action2 == "Reject" %}
+                   <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" >Relation 2</label>
+                      <Select name="Relation2" class="form-control" onchange="myFunction1()">
+                        <option value="{{ objs.Relation2}}">{{ objs.Relation2}}</option>
+                          <option value="Father">Father</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Wife">Wife</option>
+                          <option value="Son">Son</option>
+                          <option value="Daughter">Daughter</option>
+                      </Select>
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" >Relative Image</label>
+                      <input type="file" name="rel_pic2" id="rel_pic2"  class="form-control" accept="image/png, image/jpeg,image/jpg">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_web2">Web Link</label>
+                      <input type="text" name="rel_web2" id="rel_web2"  class="form-control" value="{{ objs.rel_web2}}">
+                    </div>
+                      <div class="mb-3 col-md-3">
+                      <label class="form-label" for="rel_profile2">Profile Id</label>
+                      <input type="text" name="rel_profile2" id="rel_profile2"  class="form-control" readonly value="{{ objs.rel_profile2}}">
+                    </div>
+                       <div class="mb-3 col-md-3">
+                      <label class="form-label" for="">Screen Short</label></br>
+                      <input type="file" name="picture4" id="picture4"  class="form-control">
+                    </div>
+                   <div class="mb-3 col-md-3">
+                      <label class="form-label" >Action</label>
+                      <Select name="action2" class="form-control" readonly>
+                        <option value="{{ objs.action2 }}">{{ objs.action2 }}</option>
+
+
+                      </Select>
+                    </div>
+                       <div class="mb-3 col-md-3">
+                      <label class="form-label" for="">Remarks</label>
+                      <input type="text" name="aremarks2" id="aremarks2"  class="form-control" value="{{ objs.aremarks2}}">
+                    </div>
+                       <div class="mb-3 col-md-3">
+                      <label class="form-label" for="">MLRO Remarks</label>
+                      <input type="text" name="mlro_remarks2" id="mlro_remarks2"  class="form-control" value="{{ objs.mlro_remarks2}}" disabled>
+                    </div>
+                  </div>
+                {% endif %}
+                  <div class="row">
+
+                  </div>
+                    <div class="row">
+                    <div class="mb-3 col-md-3">
+                      <input type="hidden" name="id" value="{{ objs.id }}">
+                    <input type="hidden" class="form-control" id="pfid" name="pfid" value="{{ viewdata.profile_id}}">
+                  <button type="submit" class="btn btn-primary btn-color">Save</button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+<script>
+function myFunction() {
+  var x = document.getElementById("exampleInputEmail1").value;
+  document.getElementById("rel_profile1").value = x +"-1";
+}
+function myFunction1() {
+  var x = document.getElementById("exampleInputEmail1").value;
+  document.getElementById("rel_profile2").value = x +"-2";
+}
+</script>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+
+
+
+{% block javascripts %}{% endblock javascripts %}

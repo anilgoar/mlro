@@ -1,0 +1,48 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Forms {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- ### $App Screen Content ### -->
+    <main class='main-content bgc-grey-100'>
+      <div id='mainContent'>
+        <div class="row gap-20 masonry pos-r">
+          <div class="masonry-sizer col-md-6"></div>
+          <div class="masonry-item col-md-6">
+            <div class="bgc-white p-20 bd">
+              <h6 class="c-grey-900">Basic Form</h6>
+              <div class="mT-30">
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label" for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
+                    <input type="checkbox" id="inputCall1" name="inputCheckboxesCall" class="peer">
+                    <label for="inputCall1" class="form-label peers peer-greed js-sb ai-c">
+                      <span class="peer peer-greed">Call John for Dinner</span>
+                    </label>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-color">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
